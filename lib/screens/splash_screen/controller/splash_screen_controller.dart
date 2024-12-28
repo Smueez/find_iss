@@ -5,6 +5,7 @@ import 'package:find_iss/services/location_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../utils/asset_name.dart';
@@ -18,6 +19,10 @@ class SplashScreenController {
         User? currentUser = FirebaseAuth.instance.currentUser;
         await initialCameraPosition();
         // String token = SharedPreferenceManager.readString(CommonString.tokens);
+        await LocationService().getLocationPermission();
+        if(!await Permission.location.isGranted){
+          return;
+        }
         if(currentUser == null){
           navigatorKey.currentState?.pushNamedAndRemoveUntil(RouterName.signInScreen, (v)=>false);
         }

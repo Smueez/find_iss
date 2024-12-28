@@ -9,20 +9,22 @@ import 'package:find_iss/utils/enums.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LocationService {
   getLocationPermission()async{
-    bool enabled = await Geolocator.isLocationServiceEnabled();
+
+    bool enabled = await Permission.location.isGranted;
     if(!enabled){
-      await Geolocator.requestPermission();
+      await Permission.location.request();
     }
-    enabled = await Geolocator.isLocationServiceEnabled();
+    enabled = await Permission.location.isGranted;
     if(!enabled){
-      await Geolocator.requestPermission();
+      await Permission.location.request();
     }
-    enabled = await Geolocator.isLocationServiceEnabled();
+    enabled = await Permission.location.isGranted;
     if(!enabled){
-      Geolocator.openLocationSettings();
+     openAppSettings();
     }
   }
   LatLng? getLastStoredLocation(){

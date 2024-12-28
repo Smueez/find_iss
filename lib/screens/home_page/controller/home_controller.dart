@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:worldtime/worldtime.dart';
 
 import '../../../providers/global_providers.dart';
 import '../../../services/location_service.dart';
@@ -68,11 +69,17 @@ BuildContext context;
       String myCountry = await locationService.getCountryByLatLong(currentLocation.latitude, currentLocation.longitude);
       if(myCountry.isNotEmpty && issCountry.isNotEmpty){
         if(myCountry.toLowerCase() == issCountry.toLowerCase()){
-          CommonDialogs().showCustomErrorSuccessDialog(context);
+          CommonDialogs().showISSUpAboveDialog(context);
         }
       }
     }
-    CommonDialogs().showCustomErrorSuccessDialog(context);
+  }
+
+  handleDateTime(LatLng issPosition)async{
+    final worldTimePlugin = Worldtime();
+    DateTime issLocalTime = await worldTimePlugin.timeByLocation(latitude: issPosition.latitude, longitude: issPosition.longitude);
+    ref.read(issLocalTimeProvider.notifier).state = issLocalTime;
+    ref.read(issUTCProvider.notifier).state = issLocalTime.timeZoneName;
   }
 
   Future<CameraPosition>handleMap(LatLng issPosition)async{
@@ -83,6 +90,7 @@ BuildContext context;
 
     String issCountry = await locationService.getCountryByLatLong(issPosition.latitude, issPosition.longitude);
     checkIfISSUpAbove(issPosition, issCountry);
+    handleDateTime(issPosition);
     ref.read(issCurrentRegionProvider.notifier).state = issCountry;
     final GoogleMapController controller = await mapController.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));

@@ -40,7 +40,13 @@ class _HomePageUiState extends ConsumerState<HomePageUi> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text("ISS Tracker"),
+        title: const Text(
+            "ISS Tracker",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            ),
+        ),
         actions: [
           IconButton(
               onPressed: (){
@@ -144,22 +150,32 @@ class _HomePageUiState extends ConsumerState<HomePageUi> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: Text(
-                                        "UTC: +06",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 13.sp
-                                        ),
+                                      child: Consumer(
+                                        builder: (context,ref,_) {
+                                          String utc = ref.watch(issUTCProvider);
+                                          return Text(
+                                            "UTC: $utc",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13.sp
+                                            ),
+                                          );
+                                        }
                                       ),
                                     ),
                                     SizedBox(width: 1.w,),
                                     Expanded(
-                                      child: Text(
-                                        "Local Time: ${issLocalTimeFormatter.format(DateTime.now())}",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 13.sp
-                                        ),
+                                      child: Consumer(
+                                        builder: (context,ref,_) {
+                                          DateTime localTime = ref.watch(issLocalTimeProvider);
+                                          return Text(
+                                            "Local Time: ${issLocalTimeFormatter.format(localTime)}",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13.sp
+                                            ),
+                                          );
+                                        }
                                       ),
                                     ),
 
@@ -241,7 +257,6 @@ class _HomePageUiState extends ConsumerState<HomePageUi> {
       initialCameraPosition: defaultCameraPosition,
       markers: marker,
       myLocationEnabled: true,
-      myLocationButtonEnabled: true,
       onMapCreated: (GoogleMapController controller) {
 
         homeController.mapController.complete(controller);

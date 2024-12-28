@@ -1,6 +1,7 @@
 import 'package:find_iss/utils/asset_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 
 import '../main.dart';
@@ -47,7 +48,7 @@ class CommonDialogs {
         });
   }
 
-  void showCustomErrorSuccessDialog(BuildContext context) {
+  void showISSUpAboveDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -63,6 +64,7 @@ class CommonDialogs {
             children: [
               Text(
                 "The Space Station is above your Country Now!!",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.blue,
                   fontSize: 20.sp,

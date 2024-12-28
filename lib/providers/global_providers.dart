@@ -15,10 +15,5 @@ final getISSCurrentLatLng = FutureProvider<LatLng?>((ref) async{
 });
 final timerProvider = StateProvider<int>((ref)=>0);
 final issCurrentRegionProvider = StateProvider<String>((ref)=>"");
-final issCurrentRegion = FutureProvider.autoDispose.family<String, Map<String, double>>((ref, locationData)async{
-  if(locationData.containsKey(CommonString.lat) && locationData.containsKey(CommonString.lat)){
-    String countryName = await LocationService().getCountryByLatLong(locationData[CommonString.lat]!, locationData[CommonString.lng]!);
-  }
-  return "";
-
-});
+final issLocalTimeProvider = StateProvider<DateTime>((ref)=>DateTime.now());
+final issUTCProvider = StateProvider<String>((ref)=>DateTime.now().timeZoneName);
