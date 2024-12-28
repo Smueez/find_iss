@@ -1,4 +1,3 @@
-import 'package:find_iss/apis/repositories/home_repository.dart';
 import 'package:find_iss/main.dart';
 import 'package:find_iss/routes/router_name.dart';
 import 'package:find_iss/services/location_service.dart';
@@ -18,7 +17,7 @@ class SplashScreenController {
         await Future.delayed(const Duration(seconds: 2));
         User? currentUser = FirebaseAuth.instance.currentUser;
         await initialCameraPosition();
-        // String token = SharedPreferenceManager.readString(CommonString.tokens);
+
         await LocationService().getLocationPermission();
         if(!await Permission.location.isGranted){
           return;

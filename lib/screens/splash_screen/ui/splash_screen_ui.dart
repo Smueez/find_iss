@@ -1,5 +1,4 @@
 import 'package:find_iss/screens/splash_screen/controller/splash_screen_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

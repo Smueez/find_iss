@@ -1,16 +1,38 @@
-# find_iss
-
-A new Flutter project.
-
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## How to run?
 
-A few resources to get you started if this is your first Flutter project:
+Just copy this command to your terminal.
+`flutter clean && flutter pub get && flutter run apk`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Firebase config:
+`{
+"project_info": {
+"project_number": "580982783720",
+"project_id": "find-iss-4d74a",
+"storage_bucket": "find-iss-4d74a.firebasestorage.app"
+},
+"client": [
+{
+"client_info": {
+"mobilesdk_app_id": "1:580982783720:android:045cc46a9d4a46a9e7d35d",
+"android_client_info": {
+"package_name": "com.example.find_iss"
+}
+},
+"oauth_client": [],
+"api_key": [
+{
+"current_key": "AIzaSyB9yBKNSUxjh_btoMqH6JtJmtRtPr7cs90"
+}
+],
+"services": {
+"appinvite_service": {
+"other_platform_oauth_client": []
+}
+}
+}
+],
+"configuration_version": "1"
+}`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

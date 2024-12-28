@@ -1,14 +1,11 @@
-import 'dart:async';
 
 import 'package:find_iss/screens/home_page/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../providers/global_providers.dart';
-import '../../../utils/asset_name.dart';
 import '../../../utils/global_variables.dart';
 
 class HomePageUi extends ConsumerStatefulWidget {
